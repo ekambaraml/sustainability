@@ -1,4 +1,4 @@
 # Maximo Application Suite and Applications
 
-# Maximo Asset Management
+## Maximo Asset Management
 
