@@ -26,10 +26,10 @@ https://admin.<mas_domain>/initialsetup
 
 
 ## Reference
-https://www.ibm.com/docs/en/mas87/8.7.0?topic=installing-setting-up-maximo-application-suite
-https://www.ibm.com/docs/en/mas-cd/continuous-delivery?topic=configuring-manual-certificate-management
-https://medium.com/avmconsulting-blog/how-to-secure-applications-on-kubernetes-ssl-tls-certificates-8f7f5751d788
-https://www.ibm.com/docs/en/connect-direct/5.2.0?topic=certificates-terminology-ssl-tls
+- https://www.ibm.com/docs/en/mas87/8.7.0?topic=installing-setting-up-maximo-application-suite
+- https://www.ibm.com/docs/en/mas-cd/continuous-delivery?topic=configuring-manual-certificate-management
+- https://medium.com/avmconsulting-blog/how-to-secure-applications-on-kubernetes-ssl-tls-certificates-8f7f5751d788
+- https://www.ibm.com/docs/en/connect-direct/5.2.0?topic=certificates-terminology-ssl-tls
 
 
 ## How does the TLS certificate work ?
