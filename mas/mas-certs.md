@@ -43,6 +43,27 @@ These keys are important because they interact behind the scenes during website 
 * Server and browser now encrypt all transmitted data with the session key. They begin a secure session that protects message privacy, message integrity, and server security.
 
 
+## File types
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/d72aa09d-976b-46f6-a543-dd134e6a5f31)
+
+
+Extension |	Description
+----------|------------
+.pem |	PEM encoded certificates and keys (allows the certificate and private key to be stored together in the same file)
+.der |	DER encoded certificates
+.p8 |	PKCS#8 file
+.p7b |	PKCS#7 file
+.p12 |	PKCS12 file (allows the certificate and private key to be stored together in the same file)
+.jks |	Java KeyStore file
+
+## PEM format
+
+Most CAs (Certificate Authority) provide certificates in PEM format in Base64 ASCII encoded files. The certificate file types can be .pem, .crt, .cer, or .key. The .pem file can include the server certificate, the intermediate certificate and the private key in a single file. The server certificate and intermediate certificate can also be in a separate .crt or .cer file. The private key can be in a .key file.
+
+PEM files use ASCII encoding, so you can open them in any text editor such as notepad, MS word etc. Each certificate in the PEM file is contained between the ---- BEGIN CERTIFICATE---- and ----END CERTIFICATE---- statements. The private key is contained between the ---- BEGIN RSA PRIVATE KEY----- and -----END RSA PRIVATE KEY----- statements. The CSR is contained between the -----BEGIN CERTIFICATE REQUEST----- and -----END CERTIFICATE REQUEST----- statements.
+
+
 ## Certificate file naming conventions and details
 
 file name | location | details
