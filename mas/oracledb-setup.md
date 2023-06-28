@@ -58,10 +58,19 @@ Copying database files
 ## Add user
 
 ```
- show con_name
- alter session set container=orclpdb1;
- CREATE USER masadmin IDENTIFIED BY password;
+show con_name
+alter session set container=orclpdb1;
+CREATE USER masadmin IDENTIFIED BY password;
 GRANT CONNECT, RESOURCE, DBA TO masadmin ;
 GRANT CONNECT TO masadmin ;
 grant sysdba to masadmin ;
+```
+
+## Connection
+```
+Host: <ip>
+Database: ORCLPDB1
+username: masadmin
+password: password
+type: ServiceName
 ```
