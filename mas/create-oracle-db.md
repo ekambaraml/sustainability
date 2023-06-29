@@ -1,9 +1,11 @@
+```
 https://www.ibm.com/docs/en/maximo-manage/8.3.0?topic=deployment-configuring-oracle-database
 
 https://www.ibm.com/support/pages/maximo-76x-manually-configuring-oracle-database
 https://www.sqlsplus.com/7-steps-to-create-a-new-oracle-database-from-the-command-line/
 https://blog.devart.com/how-to-create-database-in-oracle.html
-
+```
+```
 CREATE DATABASE testdb
    USER SYS IDENTIFIED BY sys_password
    USER SYSTEM IDENTIFIED BY system_password
@@ -33,7 +35,7 @@ CREATE DATABASE testdb
    USER_DATA TABLESPACE usertbs
       DATAFILE '/u01/app/oracle/oradata/mynewdb/usertbs01.dbf'
       SIZE 200M REUSE AUTOEXTEND ON MAXSIZE UNLIMITED;
-     
+```
 
 ```
 4.  Create a table space
