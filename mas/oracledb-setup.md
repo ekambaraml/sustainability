@@ -1,4 +1,4 @@
-# Setup OracleDB for MAS Manage
+# Setup OracleDB for MAS Manage - Manual
 
 
 
