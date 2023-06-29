@@ -1,3 +1,6 @@
+https://www.ibm.com/docs/en/maximo-manage/8.3.0?topic=deployment-configuring-oracle-database
+
+
 
 ```
 4.  Create a table space
