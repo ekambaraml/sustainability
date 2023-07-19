@@ -19,4 +19,4 @@ podman run \
 ```
 http://<ip address>:8090/buckets
 ```
-![Image](https://https://github.com/ekambaraml/sustainability)
+![Image](https://github.com/ekambaraml/sustainability/blob/main/minio/minio-ui.png)
