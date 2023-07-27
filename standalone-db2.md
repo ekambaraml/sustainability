@@ -18,7 +18,7 @@ yum install libstdc++.i686 pam-devel.i686 -y
 
      user: root
      
-     Set it in permissive mode and run the setenforce 0 command as a superuser to temporarily disable SELinux.
+     Set it in permissive mode and run the setenforce 0 command as a superuser to temporarily disable SELinux (SELINUX=disabled).
      
      ```
      setenforce 0
@@ -26,7 +26,19 @@ yum install libstdc++.i686 pam-devel.i686 -y
 
      reboot
      ```
-     
+ * 3. Kernel parameters
+  
+      user: root
+
+      Modify /etc/sysctl.conf
+      ```yaml
+      kernel.shmmni=8192
+      kernel.shmmax=34359738368
+      kernel.shmall=8388608
+      kernel.sem=250 1024000 32 4096
+      kernel.msgmax=65535
+      kernel.msgmnb=65535
+      ```
 ## Install DB2 pre-requisits
 
 ## Install DB2 servers
