@@ -39,6 +39,10 @@ yum install libstdc++.i686 pam-devel.i686 -y
       kernel.msgmax=65535
       kernel.msgmnb=65535
       ```
+      Enable configuration
+      ```
+      sysctl -p
+      ```
 ## Install DB2 pre-requisits
 
 ## Install DB2 servers
