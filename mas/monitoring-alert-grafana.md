@@ -10,7 +10,7 @@ To configure the monitoring dashboard, complete the following tasks:
 * [ ] Load the Maximo Manage dashboards into Grafana.
 
 
-## 1. Configuring OpenShift Monitoring service
+## 1.0 Configuring OpenShift Monitoring service
 
 #### 1.1 Cluster monitoring Config Map
 
@@ -106,7 +106,7 @@ oc get pods -n openshift-user-workload-monitoring
 ```
 All changes are reflected and pods are all up.
 
-## 2 Configure PodMonitor for Maximo Manage 
+## 2.0 Configure PodMonitor for Maximo Manage 
 In the Red Hat® OpenShift® Container Platform console, configure the PodMonitor custom resource to monitor the pods for Maximo® Manage.
 
 Create the pod monitors to monitor the server-level serverBundle pod and instance-level monitorAgent pod.
@@ -169,3 +169,92 @@ EOF
 - Type mas_manage_mbo_total.
 
 <img width="1913" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/fb1b121b-854f-47af-a00f-d1437dd661a8">
+
+
+## 3.0 Configuring Grafana
+
+```yaml
+cat <<EOF |oc apply -f -
+
+apiVersion: integreatly.org/v1alpha1
+kind: Grafana
+metadata:
+  name: mas-grafana
+  namespace: openshift-user-workload-monitoring
+spec:
+  ingress:
+    enabled: true
+  dataStorage:
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    class: ocs-storagecluster-cephfs
+  config:
+    log:
+      mode: "console"
+      level: "warn"
+    security:
+      admin_user: "root"
+      admin_password: "secret"
+    auth:
+      disable_login_form: False
+      disable_signout_menu: True
+    auth.anonymous:
+      enabled: True
+  dashboardLabelSelector:
+    - matchExpressions:
+        - {key: app, operator: In, values: [grafana]}
+
+EOF
+```
+
+#### 3.2 Service account
+
+```
+oc project grafana
+oc adm policy add-cluster-role-to-user cluster-monitoring-view -z grafana-serviceaccount
+oc serviceaccounts get-token grafana-serviceaccount -n openshift-user-workload-monitoring
+```
+
+#### 3.3 Create GrafanaDataSource data source - prometheous
+```yaml
+cat <<EOF |oc apply -f -
+
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: prometheus-grafanadatasource
+  namespace:  openshift-user-workload-monitoring
+spec:
+  datasources:
+    - access: proxy
+      editable: true
+      isDefault: true
+      jsonData:
+        httpHeaderName1: 'Authorization'
+        timeInterval: 5s
+        tlsSkipVerify: true
+      name: Prometheus
+      secureJsonData:
+        httpHeaderValue1: 'Bearer ${BEARER_TOKEN}'
+      type: prometheus
+      url: 'https://thanos-querier.openshift-monitoring.svc.cluster.local:9091'
+  name: prometheus-grafanadatasource.yaml
+
+EOF
+```
+
+## 4.0 Load maximo manage dashboard into Grafana
+
+#### 4.1 Download the latest mas manage dashboard from the pod
+```
+oc project mas-dev-manage
+
+oc get pods -n mas-dev-manage | grep ws
+dev-entitymgr-ws-7859f96b94-vn8r7                        1/1     Running     0          12h
+
+# Copy the latest mas manage dashboard from the manage workspace container
+mkdir dashboard
+oc rsync dev-entitymgr-ws-7859f96b94-vn8r7:/opt/ansible/roles/manage-deployment/files/maximo-dashboard.json dashboard
+```
+#### 4.2 Import the dashboard json to grafana
