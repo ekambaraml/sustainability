@@ -180,7 +180,7 @@ apiVersion: integreatly.org/v1alpha1
 kind: Grafana
 metadata:
   name: mas-grafana
-  namespace: openshift-user-workload-monitoring
+  namespace: grafana
 spec:
   ingress:
     enabled: true
@@ -224,7 +224,7 @@ apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDataSource
 metadata:
   name: prometheus-grafanadatasource
-  namespace:  openshift-user-workload-monitoring
+  namespace:  grafana
 spec:
   datasources:
     - access: proxy
