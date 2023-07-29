@@ -260,3 +260,35 @@ oc rsync dev-entitymgr-ws-7859f96b94-vn8r7:/opt/ansible/roles/manage-deployment/
 #### 4.2 Import the dashboard json to grafana
 
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/53c1c3a4-f0c4-4c1f-82c3-0def38595a2c)
+
+## 5.0 Alerts and SMTP server setup
+
+#### 5.1 Configure Grafana with SMTP server for email alert notification
+
+```
+oc project grafana
+oc get grafana -o yaml > grafana.yaml
+```
+
+update the grafana.yaml with your smtp details. Sample format is listed below
+```
+      smtp:
+        enabled: true
+        from_address: ekambara@us.ibm.com
+        from_name: Grafana
+        host: smtp.gmail.com:587
+        password: smtp-password
+        skip_verify: true
+        user: test-user@gmail.com
+```
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/e8b48e7f-a713-4373-a29e-42a5d9fa26c5)
+
+
+save and apply the changes
+```
+oc apply -f grafana.yaml
+```
+wait for the grafana pods to be restarted.
+```
+oc get pods
+```
