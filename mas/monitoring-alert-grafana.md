@@ -258,3 +258,5 @@ mkdir dashboard
 oc rsync dev-entitymgr-ws-7859f96b94-vn8r7:/opt/ansible/roles/manage-deployment/files/maximo-dashboard.json dashboard
 ```
 #### 4.2 Import the dashboard json to grafana
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/53c1c3a4-f0c4-4c1f-82c3-0def38595a2c)
