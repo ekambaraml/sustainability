@@ -292,3 +292,8 @@ wait for the grafana pods to be restarted.
 ```
 oc get pods
 ```
+
+#### 5.2 Create alert rules and validate email alerts
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/57aa85d2-e92e-4de0-a09e-86ee61e8b672)
+
