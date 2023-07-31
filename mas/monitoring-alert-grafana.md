@@ -293,7 +293,18 @@ wait for the grafana pods to be restarted.
 oc get pods
 ```
 
-#### 5.2 Create alert rules and validate email alerts
+#### 5.2 Create Notification Channels
+
+In Grafana dashboard, Select Alerting -> Notification channel to configuring notification.
+
+<img width="301" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/3898602b-576e-4205-82d6-16e0b3c99cac">
+
+
+Then update the channel with Notification heading and email addresses to send the altert notifications.
+<img width="1105" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/2781ac68-3c18-40be-b05c-28b620901dbc">
+
+
+#### 5.3 Create alert rules and validate email alerts
 
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/57aa85d2-e92e-4de0-a09e-86ee61e8b672)
 
