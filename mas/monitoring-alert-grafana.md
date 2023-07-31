@@ -332,7 +332,26 @@ Then update the channel with Notification heading and email addresses to send th
 <img width="1105" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/2781ac68-3c18-40be-b05c-28b620901dbc">
 
 
-#### 5.3 Create alert rules and validate email alerts
+#### 5.3 How to Create alert rules and validate email alerts
 
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/57aa85d2-e92e-4de0-a09e-86ee61e8b672)
+
+
+#### 5.4 Alerts 
+
+* OpenShift
+Alert       | Description                          | Rules
+------------|--------------------------------------|-------
+system_down | when one of more ocp nodes are down  |
+Memory+high
+
+
+* MAS Manage Alerts
+
+Alert       | Description                          | Rules
+------------|--------------------------------------|-------
+mas_down    | when one of more ocp nodes are down  |
+Manage_down | Manage application pods down         |
+User_acess  | User access pod is down              |
+
 
