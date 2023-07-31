@@ -106,6 +106,34 @@ oc get pods -n openshift-user-workload-monitoring
 ```
 All changes are reflected and pods are all up.
 
+#### 1.3 Server Bundles
+
+```yaml
+cat <<EOF |oc apply -f -
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  labels:
+    k8s-app: maximo-monitoragent
+  name: maximo-monitoragent
+  namespace: mas-dev-manage
+spec:
+  podMetricsEndpoints:
+    - interval: 30s
+      scheme: http
+      targetPort: 9081
+    - interval: 30s
+      scheme: https
+      targetPort: 9444
+      tlsConfig:
+        insecureSkipVerify: true
+  selector:
+    matchLabels:
+      mas.ibm.com/appType: serverBundle
+EOF
+```
+
+
 ## 2.0 Configure PodMonitor for Maximo Manage 
 In the Red Hat® OpenShift® Container Platform console, configure the PodMonitor custom resource to monitor the pods for Maximo® Manage.
 
