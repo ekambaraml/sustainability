@@ -366,3 +366,12 @@ Manage_down       | Manage application pods down         |
 User_acess        | User access pod is down              |
 
 
+## 6.0 AlertManager for sending prometheus alerts
+
+on the OpenShift Admin Console
+
+Administration -> Cluster Settings -> Configurations -> AlertManager -> Create Receiver
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/5cc39a74-2372-43c9-802a-198b9350e923)
+
+
+Receiver Configuration
