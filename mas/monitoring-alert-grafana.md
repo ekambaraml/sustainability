@@ -340,19 +340,22 @@ Then update the channel with Notification heading and email addresses to send th
 #### 5.4 Alerts 
 
 #### 5.4.1 OpenShift Alerts
+
   
-Alert       | Description                          | Rules
-------------|--------------------------------------|-------
-system_down | when one of more ocp nodes are down  |
-Memory+high
+Alert             | Description                          | Rules
+------------------|--------------------------------------|-------
+system_down       | Openshift node down alert            |
+cpu_memory_high   | High memory/cpu utilization alert    |
+
 
 
 #### 5.4.2 MAS Manage Alerts
 
-Alert       | Description                          | Rules
-------------|--------------------------------------|-------
-mas_down    | when one of more ocp nodes are down  |
-Manage_down | Manage application pods down         |
-User_acess  | User access pod is down              |
+
+Alert             | Description                          | Rules
+------------------|--------------------------------------|-------
+mas_down          | when one of more ocp nodes are down  |
+Manage_down       | Manage application pods down         |
+User_acess        | User access pod is down              |
 
 
