@@ -359,6 +359,8 @@ NodeFilesystemAlmostOutOfSpace | Filesystem has less than 3% space left. | (node
 
 #### 5.4.2 MAS Manage Alerts
 
+Metrics in Maximo® Manage https://www.ibm.com/docs/en/maximo-manage/continuous-delivery?topic=monitoring-querying-metrics
+
 
 Alert             | Description                          | Rules
 ------------------|--------------------------------------|-------
