@@ -339,14 +339,15 @@ Then update the channel with Notification heading and email addresses to send th
 
 #### 5.4 Alerts 
 
-* OpenShift
+#### 5.4.1 OpenShift Alerts
+  
 Alert       | Description                          | Rules
 ------------|--------------------------------------|-------
 system_down | when one of more ocp nodes are down  |
 Memory+high
 
 
-* MAS Manage Alerts
+#### 5.4.2 MAS Manage Alerts
 
 Alert       | Description                          | Rules
 ------------|--------------------------------------|-------
