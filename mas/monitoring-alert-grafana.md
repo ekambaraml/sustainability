@@ -337,7 +337,9 @@ Then update the channel with Notification heading and email addresses to send th
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/57aa85d2-e92e-4de0-a09e-86ee61e8b672)
 
 
-#### 5.4 Alerts 
+#### 5.4 Alerts (Grafana-managed alert rule)
+Grafana managed alerts support multi-dimensional alerting. Each alert rule can create multiple alert instances. This is exceptionally powerful if you are observing multiple series in a single expression.
+
 
 #### 5.4.1 OpenShift Alerts
 
