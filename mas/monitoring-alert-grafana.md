@@ -347,7 +347,6 @@ Grafana managed alerts support multi-dimensional alerting. Each alert rule can c
 
 
 #### 5.4.1 OpenShift Alerts
-
   
 Alert             | Description                                               | Rules
 ------------------|-----------------------------------------------------------|-------
@@ -356,6 +355,7 @@ cpu_memory_high   | High memory/cpu utilization alert                         |
 KubeletDown       | Kubelet has disappeared from Prometheus target discovery. | absent(up{job="kubelet",metrics_path="/metrics"} == 1)
 HAProxyDown       | This alert fires when metrics report that HAProxy is down.| haproxy_up == 0
 NodeFilesystemAlmostOutOfSpace | Filesystem has less than 3% space left. | (node_filesystem_avail_bytes{fstype!="",job="node-exporter"} / node_filesystem_size_bytes{fstype!="",job="node-exporter"} * 100 < 3 and node_filesystem_readonly{fstype!="",job="node-exporter"} == 0) KubePersistentVolumeFillingUp | The PersistentVolume claimed by {{ $labels.persistentvolumeclaim }} in Namespace {{ $labels.namespace }} is only {{ $value | humanizePercentage }} free. (kubelet_volume_stats_available_bytes{job="kubelet",metrics_path="/metrics",namespace=~"(openshift-.*|kube-.*|default)"} / kubelet_volume_stats_capacity_bytes{job="kubelet",metrics_path="/metrics",namespace=~"(openshift-.*|kube-.*|default)"}) < 0.03 and kubelet_volume_stats_used_bytes{job="kubelet",metrics_path="/metrics",namespace=~"(openshift-.*|kube-.*|default)"} > 0 unless on(namespace, persistentvolumeclaim) kube_persistentvolumeclaim_access_mode{access_mode="ReadOnlyMany",namespace=~"(openshift-.*|kube-.*|default)"} == 1 unless on(namespace, persistentvolumeclaim) kube_persistentvolumeclaim_labels{label_alerts_k8s_io_kube_persistent_volume_filling_up="disabled",namespace=~"(openshift-.*|kube-.*|default)"} == 1
+
 
 #### 5.4.2 MAS Manage Alerts
 
