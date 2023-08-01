@@ -323,6 +323,11 @@ oc get pods
 
 #### 5.2 Create Notification Channels
 
+* [ ] Notification channels are used to define the recivers for the email alerts. 
+* [ ] You can define multiple channels.
+* [ ] You can chose the channel to send alerts, Depends on the type of alert.
+
+
 In Grafana dashboard, Select Alerting -> Notification channel to configuring notification.
 
 <img width="301" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/3898602b-576e-4205-82d6-16e0b3c99cac">
