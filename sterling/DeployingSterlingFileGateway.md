@@ -22,7 +22,15 @@ docker run -itd --name sterling-db2 --privileged=true -p 50000:50000 -e LICENSE=
 
 
 
+
 ## 5.0 Installing the product
+### 5.1 Sterling B2Bi
+
+#### 5.1.1 Property files
+Five different kinds of property files exist in Sterling B2B Integrator.
+
+- 5.1.1.1 Initial Settings for Property Files
+  
 
 ## 6.0 Configuration
 
