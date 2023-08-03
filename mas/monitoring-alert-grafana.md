@@ -379,3 +379,18 @@ Administration -> Cluster Settings -> Configurations -> AlertManager -> Create R
 
 
 Receiver Configuration
+
+## 6.1 Enabling alert routing for user-defined projects
+```
+oc -n openshift-monitoring edit configmap cluster-monitoring-config
+```
+
+```
+data:
+  config.yaml: |
+    enableUserWorkload: true
+    alertmanagerMain:
+      enableUserAlertmanagerConfig: true
+```
+<img width="414" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/ca124587-546b-4d29-bde5-83917474c98b">
+
