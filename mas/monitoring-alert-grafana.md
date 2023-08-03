@@ -347,7 +347,8 @@ Grafana managed alerts support multi-dimensional alerting. Each alert rule can c
 
 
 #### 5.4.1 OpenShift Alerts
-  
+https://github.com/openshift/runbooks/tree/master/alerts/cluster-monitoring-operator
+
 Alert             | Description                                               | Rules
 ------------------|-----------------------------------------------------------|-------
 system_down       | Openshift node down alert                                 |
@@ -378,7 +379,18 @@ Administration -> Cluster Settings -> Configurations -> AlertManager -> Create R
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/5cc39a74-2372-43c9-802a-198b9350e923)
 
 
-Receiver Configuration
+* Receiver Configuration
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/a20f3a8e-2939-4949-97c5-7d73baf00426)
+
+* Example of Critical Alerts:
+
+Routing labels
+```
+severity = critical
+```
+<img width="1275" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/4db0960d-f6f3-4315-9965-589b5b9e1546">
+
 
 ## 6.1 Enabling alert routing for user-defined projects
 ```
