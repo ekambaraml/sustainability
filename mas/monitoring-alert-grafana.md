@@ -392,7 +392,7 @@ severity = critical
 <img width="1275" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/4db0960d-f6f3-4315-9965-589b5b9e1546">
 
 
-## 6.1 Enabling alert routing for user-defined projects
+#### 6.1 Enabling alert routing for user-defined projects
 ```
 oc -n openshift-monitoring edit configmap cluster-monitoring-config
 ```
@@ -406,3 +406,5 @@ data:
 ```
 <img width="414" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/ca124587-546b-4d29-bde5-83917474c98b">
 
+## 7.0 References
+* https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4
