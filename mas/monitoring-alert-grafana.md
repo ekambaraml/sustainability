@@ -368,7 +368,8 @@ Alert             | Description                          | Rules
 mas_down          | when one of more ocp nodes are down  |
 Manage_down       | Manage application pods down         |
 User_acess        | User access pod is down              |
-DB Connection
+DB Connection     | Database connection pools            | 
+MongoDB           | MongoDB pods are down                | count(namespace_workload_pod:kube_pod_owner:relabel{cluster="", namespace="mongoce", workload_type="statefulset"}) by (workload, workload_type)
 
 
 ## 6.0 AlertManager for sending prometheus alerts
