@@ -15,6 +15,17 @@ Sterling File Gateway allows integration with IBM Partner Engagement Manager to 
 
 ## 4.0 Environment Setup
 
+### 4.1 Prepare Client machine
+
+* Log into your OCP cluster
+```
+oc login --token=<token> --server=<server>
+```
+
+* Install the Kubeseal CLI
+```
+yum install kubeseal -y 
+```
 ### 4.1 DB2 Setup
 ```
 DB2_SKIPDELETED = ON
