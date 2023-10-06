@@ -7,6 +7,20 @@ Sizing factoring includes:
 * Whether you run Sterling B2B Integrator with or without perimeter servers.
 * Whether your environment is clustered (multiple node) or non-clustered (single node).
 
+
+## Deploy OpenShift Cluster
+
+## Deploy Persistent Volume storages
+check the Storage classes deployed in the cluster
+
+```
+oc get sc
+
+NAME                            PROVISIONER       RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+managed-nfs-storage (default)   nfs/provisioner   Delete          Immediate           false                  50m
+```
+<img width="1200" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/dd7426d2-9db7-470d-bda2-0c577fa52263">
+
 ## Create Namespace for SFG Deployment
 
 ```
