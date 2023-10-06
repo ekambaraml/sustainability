@@ -7,6 +7,17 @@ Sizing factoring includes:
 * Whether you run Sterling B2B Integrator with or without perimeter servers.
 * Whether your environment is clustered (multiple node) or non-clustered (single node).
 
+### 1.1 Hardware Requirements
+
+* Loadbalancer
+
+Node | Count |CPU | Memory | Storage | Firewall Rules,Ports 
+-----|-------|-----|--------|---------|---------------------
+Bastion | 1 | 4 vcpu | 8 GB | 100 GB |
+Master  | 3 | 4 vcpu | 16 GB | 200 GB |
+Worker  | 3 | 8 vcpu | 32 FB | 300 GB |
+
+
 
 ## 2.0 Deploy OpenShift Cluster
 
