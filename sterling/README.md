@@ -10,12 +10,14 @@ Sizing factoring includes:
 
 
 ## Role based Access Control
+## Namespace : sfg-dev
 
+cat <<EOF |oc apply -f -
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: ibm-b2bi-role-<namespace>
-  namespace: <namespace>
+  name: ibm-b2bi-role-sfg-dev
+  namespace: sfg-dev
 rules:
   - apiGroups: ['route.openshift.io']
     resources: ['routes','routes/custom-host']
@@ -27,13 +29,14 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: ibm-b2bi-rolebinding-<namespace>
-  namespace: <namespace>
+  name: ibm-b2bi-rolebinding-sfg-dev
+  namespace:sfg-dev
 subjects:
   - kind: ServiceAccount
-    name: <service-account>
-    namespace: <namespace>
+    name: sfg-dev-sa
+    namespace: sfg-dev
 roleRef:
   kind: Role
-  name: ibm-b2bi-role-<namespace>
+  name: ibm-b2bi-role-sfg-dev
   apiGroup: rbac.authorization.k8s.io
+EOF
