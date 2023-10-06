@@ -1,4 +1,4 @@
-# IBM Sterling 
+# 1.0 IBM Sterling 
 
 
 Sizing factoring includes:
@@ -8,9 +8,14 @@ Sizing factoring includes:
 * Whether your environment is clustered (multiple node) or non-clustered (single node).
 
 
-## Deploy OpenShift Cluster
+## 2.0 Deploy OpenShift Cluster
 
-## Deploy Persistent Volume storages
+
+
+## 3.0 PreRequirements
+### 3.1 Deploy Persistent Volume storages
+Sizing the storage should be reviewed and minimum required storage 
+
 check the Storage classes deployed in the cluster
 
 ```
@@ -21,14 +26,23 @@ managed-nfs-storage (default)   nfs/provisioner   Delete          Immediate     
 ```
 <img width="1200" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/dd7426d2-9db7-470d-bda2-0c577fa52263">
 
-## Create Namespace for SFG Deployment
+### 3.2 Database Setup
+
+* DB2 Database setup
+* 
+
+## 4.0 Deploying the SFT
+
+### 4.1 Download the Sterling B2Bi Images/charts
+
+### 4.2 Create Namespace for SFG Deployment
 
 ```
  oc new-project sfg-dev
 ```
 
 
-## Role based Access Control
+### 4.3 Role based Access Control
 ## Namespace : sfg-dev
 ```
 cat <<EOF |oc apply -f -
