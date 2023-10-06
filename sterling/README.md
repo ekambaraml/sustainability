@@ -38,9 +38,10 @@ managed-nfs-storage (default)   nfs/provisioner   Delete          Immediate     
 <img width="1200" alt="image" src="https://github.com/ekambaraml/sustainability/assets/26153008/dd7426d2-9db7-470d-bda2-0c577fa52263">
 
 ### 3.2 Database Setup
+* [ ] Sterling B2B Integrator tables have a minimum page size of 16K
 
 * DB2 Database setup
-* 
+https://www.ibm.com/docs/en/b2b-integrator/6.2.0?topic=database-configuring-db2
 
 ## 4.0 Deploying the SFT
 
