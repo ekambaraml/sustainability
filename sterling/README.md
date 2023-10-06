@@ -86,3 +86,19 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 EOF
 ```
+
+### 4.4 Helm value.yaml Generation
+
+```
+# Define all custom values
+export PULLSECRET=imagepull-secret
+
+# Generate the values, this is to prevent typo erros
+cat > custom-values.yaml << EOF
+
+EOF
+
+
+#ls -l custom-values.yaml
+
+```
