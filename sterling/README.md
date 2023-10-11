@@ -55,7 +55,7 @@ https://www.ibm.com/docs/en/b2b-integrator/6.2.0?topic=database-configuring-db2
 
 
 ### 4.3 Role based Access Control
-## Namespace : sfg-dev
+* Namespace : sfg-dev
 ```
 cat <<EOF |oc apply -f -
 kind: Role
@@ -88,6 +88,7 @@ EOF
 ```
 
 * Pod Security Admission
+  
 ```
 cat <<EOF |oc apply -f -
 apiVersion: policy/v1beta1
