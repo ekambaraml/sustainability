@@ -87,6 +87,114 @@ roleRef:
 EOF
 ```
 
+* Pod Security Admission
+```
+cat <<EOF |oc apply -f -
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: "ibm-b2bi-psp"
+  labels:
+    app: "ibm-b2bi-psp"
+  
+spec:
+  privileged: false
+  allowPrivilegeEscalation: false
+  hostPID: false
+  hostIPC: false
+  hostNetwork: false
+  allowedCapabilities:
+  requiredDropCapabilities:
+  - MKNOD
+  - AUDIT_WRITE
+  - KILL
+  - NET_BIND_SERVICE
+  - NET_RAW
+  - FOWNER
+  - FSETID
+  - SYS_CHROOT
+  - SETFCAP
+  - SETPCAP
+  - CHOWN
+  - SETGID
+  - SETUID
+  - DAC_OVERRIDE
+  allowedHostPaths:
+  runAsUser:
+    rule: MustRunAsNonRoot
+  runAsGroup:
+    rule: MustRunAs
+    ranges:
+    - min: 1
+      max: 4294967294
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: MustRunAs
+    ranges:
+    - min: 1
+      max: 4294967294
+  fsGroup:
+    rule: MustRunAs  
+    ranges:
+    - min: 1
+      max: 4294967294
+  volumes:
+  - configMap
+  - emptyDir
+  - projected
+  - secret
+  - downwardAPI
+  - persistentVolumeClaim
+  - nfs
+  forbiddenSysctls:
+  - '*'
+EOF
+```
+
+* Custom Role for the custom PodSecurityPolicy:
+```
+cat <<EOF |oc apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: "ibm-b2bi-psp"
+  labels:
+    app: "ibm-b2bi-psp"
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - "ibm-b2bi-psp"
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+EOF
+```
+
+* Custom Role binding for the custom PodSecurityPolicy:
+```
+export NAMESPACE=sfg-dev
+cat <<EOF |oc apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: "ibm-b2bi-psp"
+  labels:
+    app: "ibm-b2bi-psp"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: "ibm-b2bi-psp"
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts
+  namespace: {{ NAMESPACE }}
+EOF
+```
+  
 ### 4.4 Helm value.yaml Generation
 
 ```
