@@ -49,7 +49,7 @@ metadata:
   name: b2b-system-passphrase-secret
 type: Opaque
 stringData:  
-  SYSTEM_PASSPHRASE: {{passphrase}}
+  SYSTEM_PASSPHRASE: sterling123
 EOF
 ```  
 
