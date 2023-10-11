@@ -15,6 +15,7 @@ Sterling File Gateway allows integration with IBM Partner Engagement Manager to 
 
 ## 4.0 Environment Setup
 
+
 ### 4.1 Prepare Client machine
 
 * Log into your OCP cluster
@@ -26,6 +27,46 @@ oc login --token=<token> --server=<server>
 ```
 yum install kubeseal -y 
 ```
+
+* Registry login verification
+```
+podman login -u ${REGISTRY_USER} -p ${REGISTRY_PASSWORD} ${REGISTRY_SERVER} --tls-verify=false
+```
+
+
+* Create pull secret
+```
+kubectl create secret docker-registry <name of secret> --docker-server=<your-registry-server> --docker-username=<your-username> --docker-password=<your-password> --docker-email=<your-email>
+```
+
+* Global pull secret setup
+
+```
+# add-pull-secret.sh
+#!/bin/bash
+
+if [ "$#" -lt 3 ]; then
+  echo "Usage: $0 <repo-url> <artifactory-user> <API-key>" >&2
+  exit 1
+fi
+
+# set -x
+
+REPO_URL=$1
+REPO_USER=$2
+REPO_API_KEY=$3
+
+pull_secret=$(echo -n "$REPO_USER:$REPO_API_KEY" | base64 -w0)
+oc get secret/pull-secret -n openshift-config -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d | sed -e 's|:{|:{"'$REPO_URL'":{"auth":"'$pull_secret'","email":"not-used"\},|' > /tmp/dockerconfig.json
+oc set data secret/pull-secret -n openshift-config --from-file=.dockerconfigjson=/tmp/dockerconfig.json
+
+
+```
+* Verify pull secrets
+```
+oc get secret/pull-secret -n openshift-config -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d | jq
+```
+
 ### 4.1 DB2 Setup
 ```
 DB2_SKIPDELETED = ON
