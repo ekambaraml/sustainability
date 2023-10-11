@@ -39,7 +39,19 @@ docker run -itd --name sterling-db2 --privileged=true -p 50000:50000 -e LICENSE=
 ```
 
 
+### 4.3 Create Role Based Access
+```
+cat <<EOF |oc apply -f -
 
+apiVersion: v1
+kind: Secret
+metadata:
+  name: b2b-system-passphrase-secret
+type: Opaque
+stringData:  
+  SYSTEM_PASSPHRASE: {{passphrase}}
+EOF
+```  
 
 ## 5.0 Installing the product
 ### 5.1 Sterling B2Bi 6.1.2
