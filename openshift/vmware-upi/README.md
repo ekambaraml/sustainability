@@ -11,7 +11,7 @@ Procedure
 - Configure DNS.
 - Ensure network connectivity.
 
-
+https://docs.openshift.com/container-platform/4.12/installing/installing_vsphere/installing-vsphere-network-customizations.html
 
 Download:
 
