@@ -17,7 +17,14 @@ Download:
 
 
 https://access.redhat.com/downloads/content/290/ver=4.12/rhel---8/4.12.56/x86_64/product-software
-OpenShift Installer:
+
+
+## OpenShift Installer:
 
 https://access.redhat.com/downloads/content/290/ver=4.12/rhel---8/4.12.56/x86_64/product-software
+
+
+## Pull secret
+
+https://console.redhat.com/openshift/install/pull-secret
 
