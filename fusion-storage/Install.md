@@ -37,6 +37,19 @@ oc get CatalogSources, pods -n openshift-marketplace
 Install IBM Storage Fusion via Catalog
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/d1aec1e2-8716-4d10-afe6-74d2b49fd04b)
 
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/a6d8c3e4-c325-44d4-b4bd-bcf7e549eb7a)
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/4f88d7f9-06e3-4c2d-978b-fadb5d805a98)
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/a04159b9-37bb-4e82-ac24-03ad94dd2a2b)
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/a052f722-e1c3-4b10-8eb5-85348bae0f3d)
+
+Create Spectrum Fusion Cluster
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/0b944d04-bd89-4989-a21b-962ffa54fef1)
+
 ## 4. Validation
 
 
