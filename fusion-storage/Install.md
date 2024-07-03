@@ -50,6 +50,12 @@ Create Spectrum Fusion Cluster
 
 ![image](https://github.com/ekambaraml/sustainability/assets/26153008/0b944d04-bd89-4989-a21b-962ffa54fef1)
 
+Local Storage
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/cdb4dc38-6278-4f61-91fc-3d435571e0e9)
+
+![image](https://github.com/ekambaraml/sustainability/assets/26153008/a2d71954-f461-40e9-a70a-e78b2ba4c15a)
+
+
 ## 4. Validation
 
 
