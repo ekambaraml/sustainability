@@ -93,7 +93,7 @@ oc adm policy add-role-to-user cpd-instance-admin-apply-olm ${INSTANCE_ADMIN} \
 --rolebinding-name="cpd-instance-admin-apply-olm-rbac"
 ```
 
-Install foundational services:
+## Install IBM Cloud Pak Foundational services
 
 ```yaml
 cpd-cli manage setup-instance-topology \
@@ -104,7 +104,7 @@ cpd-cli manage setup-instance-topology \
 --block_storage_class=${STG_CLASS_BLOCK}
 ```
 
-Installing cpd_platform component:
+## Install Cloud Pak for Data platform (cpd_platform) component
 
 ```yaml
 cpd-cli manage get-license \
@@ -130,5 +130,6 @@ After apply-cr step is completed successfully, you can run cr-status command to 
 cpd-cli manage get-cr-status --cpd_instance_ns=${PROJECT_CPD_INST_OPERANDS}
 ```
 
+## Install WatsonX
 
 
