@@ -1,12 +1,8 @@
-#Deploying WatsonX on-perm
+# Deploying WatsonX on-perm
 
 
 
-
-
-
-
-Install
+## Configure OpenShift Cluster 
 
 
 ${CPDM_OC_LOGIN}
