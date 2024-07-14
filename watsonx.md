@@ -104,3 +104,31 @@ cpd-cli manage setup-instance-topology \
 --block_storage_class=${STG_CLASS_BLOCK}
 ```
 
+Installing cpd_platform component:
+
+```yaml
+cpd-cli manage get-license \
+--release=${VERSION} \
+--license-type=EE
+
+cpd-cli manage apply-olm \
+--release=${VERSION} \
+--cpd_operator_ns=${PROJECT_CPD_INST_OPERATORS} \
+--components=cpd_platform
+
+cpd-cli manage apply-cr \
+--release=${VERSION} \
+--cpd_instance_ns=${PROJECT_CPD_INST_OPERANDS} \
+--components=cpd_platform \
+--block_storage_class=${STG_CLASS_BLOCK} \
+--file_storage_class=${STG_CLASS_FILE} \
+--license_acceptance=true
+```
+
+After apply-cr step is completed successfully, you can run cr-status command to make sure all requested components have been installed successfully
+```yaml
+cpd-cli manage get-cr-status --cpd_instance_ns=${PROJECT_CPD_INST_OPERANDS}
+```
+
+
+
