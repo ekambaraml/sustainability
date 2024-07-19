@@ -43,3 +43,8 @@ spec:
 ```
 random, Newest, and Oldest are the three supported deletion options. The default is Random.
 ```
+
+
+## Nutanix 
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/machine_management/managing-compute-machines-with-the-machine-api#machineset-yaml-nutanix_creating-machineset-nutanix
+
