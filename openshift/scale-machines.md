@@ -48,3 +48,8 @@ random, Newest, and Oldest are the three supported deletion options. The default
 ## Nutanix 
 https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/machine_management/managing-compute-machines-with-the-machine-api#machineset-yaml-nutanix_creating-machineset-nutanix
 
+
+
+
+## How to manually add workers to Cluster provisioned using UPI method.
+https://access.redhat.com/solutions/4799921
