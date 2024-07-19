@@ -32,3 +32,14 @@ metadata:
 spec:
   replicas: 2
   ```
+
+### The compute machine set deletion policy
+```yaml
+spec:
+  deletePolicy: <delete_policy>
+  replicas: <desired_replica_count>
+```
+
+```
+random, Newest, and Oldest are the three supported deletion options. The default is Random.
+```
