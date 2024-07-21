@@ -14,3 +14,16 @@
 
 
 ![image](https://github.com/user-attachments/assets/08db9549-079c-403a-9b3a-790b4eb0f4f7)
+
+
+
+![image](https://github.com/user-attachments/assets/9a3b2b7c-159d-4ddc-a512-6e0f024655d4)
+
+![image](https://github.com/user-attachments/assets/e715f688-798c-468a-aa2c-4ff462f5ac59)
+
+
+
+
+Using Loki:
+https://docs.openshift.com/container-platform/4.14/observability/logging/cluster-logging-deploying.html
+https://github.com/grafana/loki/issues/12608
