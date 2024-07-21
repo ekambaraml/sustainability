@@ -25,5 +25,7 @@
 
 
 Using Loki:
+```
 https://docs.openshift.com/container-platform/4.14/observability/logging/cluster-logging-deploying.html
 https://github.com/grafana/loki/issues/12608
+```
