@@ -21,3 +21,12 @@ oc get csr -o name | xargs oc adm certificate approve
 ## Adding worker outside of MachineSet
 
 https://www.redhat.com/en/blog/adding-nodes-outside-of-a-machineset-in-vsphere-ipi-clusters
+
+https://docs.redhat.com/en/documentation/openshift_container_platform/4.11/html-single/machine_management/index#capi-machine-management
+
+
+## Nutanix IPI
+
+https://www.nutanix.dev/2022/08/16/red-hat-openshift-ipi-on-nutanix-cloud-platform/
+
+https://portal.nutanix.com/page/documents/solutions/details?targetId=TN-2030-Red-Hat-OpenShift-on-Nutanix:TN-2030-Red-Hat-OpenShift-on-Nutanix
