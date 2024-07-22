@@ -12,4 +12,7 @@ https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/
 
 https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/machine_management/managing-user-provisioned-infrastructure-manually#machine-vsphere-machines_adding-vsphere-compute-user-infra
 
+Approve CSR
+```
 oc get csr -o name | xargs oc adm certificate approve
+```
