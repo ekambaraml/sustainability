@@ -30,3 +30,6 @@ https://docs.openshift.com/container-platform/4.14/observability/logging/cluster
 https://github.com/grafana/loki/issues/12608
 https://www.linkedin.com/pulse/red-hat-openshift-logging-using-loki-data-foundation-odf-miranda/
 ```
+
+## Configuring Loki datasource
+https://loki-operator.dev/docs/howto_connect_grafana.md/
