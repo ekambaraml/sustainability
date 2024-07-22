@@ -32,3 +32,5 @@ https://docs.redhat.com/en/documentation/openshift_container_platform/4.11/html-
 https://www.nutanix.dev/2022/08/16/red-hat-openshift-ipi-on-nutanix-cloud-platform/
 
 https://portal.nutanix.com/page/documents/solutions/details?targetId=TN-2030-Red-Hat-OpenShift-on-Nutanix:TN-2030-Red-Hat-OpenShift-on-Nutanix
+
+https://portal.nutanix.com/page/documents/solutions/details?targetId=NVD-2177-Cloud-Native-6-5-OpenShift:openshift-scalability.html
