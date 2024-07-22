@@ -16,3 +16,8 @@ Approve CSR
 ```
 oc get csr -o name | xargs oc adm certificate approve
 ```
+
+
+## Adding worker outside of MachineSet
+
+https://www.redhat.com/en/blog/adding-nodes-outside-of-a-machineset-in-vsphere-ipi-clusters
