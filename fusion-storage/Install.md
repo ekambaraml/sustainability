@@ -112,3 +112,5 @@ pod/local-storage-operator-669bb5bcf4-jl8bk   1/1     Running   0          3m47s
 NAME                                                       PACKAGE                  SOURCE             CHANNEL
 subscription.operators.coreos.com/local-storage-operator   local-storage-operator   redhat-operators   stable
 ```
+
+<img width="1858" alt="image" src="https://github.com/user-attachments/assets/e0f15fbd-4851-44d5-910c-b1e6e2420a44">
