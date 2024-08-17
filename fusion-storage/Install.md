@@ -83,3 +83,32 @@ subscription.operators.coreos.com/odf-csi-addons-operator-stable-4.14-redhat-ope
 subscription.operators.coreos.com/odf-operator                                                                 odf-operator              redhat-operators   stable-4.14
 ```
 
+## Install Local storage
+
+
+<img width="1564" alt="image" src="https://github.com/user-attachments/assets/33f32a77-5291-469d-b13b-1119b7f80f6d">
+
+<img width="1564" alt="image" src="https://github.com/user-attachments/assets/f5544bc8-d87e-4261-9275-451ba6aab514">
+
+<img width="1564" alt="image" src="https://github.com/user-attachments/assets/f0e25d97-6cab-409f-907c-bd80e94f6dd7">
+```
+oc get pods,subs -n openshift-local-storage
+NAME                                          READY   STATUS    RESTARTS   AGE
+pod/diskmaker-manager-26f92                   2/2     Running   0          26s
+pod/diskmaker-manager-7s94t                   2/2     Running   0          26s
+pod/diskmaker-manager-8k8c2                   2/2     Running   0          26s
+pod/diskmaker-manager-ft7s2                   2/2     Running   0          26s
+pod/diskmaker-manager-hm78d                   2/2     Running   0          26s
+pod/diskmaker-manager-hsjnp                   2/2     Running   0          26s
+pod/diskmaker-manager-l5vwq                   2/2     Running   0          26s
+pod/diskmaker-manager-m8c8z                   2/2     Running   0          26s
+pod/diskmaker-manager-qpxtk                   2/2     Running   0          26s
+pod/diskmaker-manager-rx2bw                   2/2     Running   0          26s
+pod/diskmaker-manager-sl8h6                   2/2     Running   0          26s
+pod/diskmaker-manager-t956b                   2/2     Running   0          26s
+pod/diskmaker-manager-ttbwg                   2/2     Running   0          26s
+pod/local-storage-operator-669bb5bcf4-jl8bk   1/1     Running   0          3m47s
+
+NAME                                                       PACKAGE                  SOURCE             CHANNEL
+subscription.operators.coreos.com/local-storage-operator   local-storage-operator   redhat-operators   stable
+```
