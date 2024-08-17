@@ -59,4 +59,27 @@ Local Storage
 ## 4. Validation
 
 
+# Install OpenShift Data Foundation
+
+
+<img width="1564" alt="image" src="https://github.com/user-attachments/assets/bf173ccb-b3b1-4280-9b78-7f9cf0d31702">
+
+```
+# oc get pods,subs -n openshift-storage
+NAME                                                  READY   STATUS    RESTARTS   AGE
+pod/csi-addons-controller-manager-d9b47d8f7-9hgp9     2/2     Running   0          54s
+pod/noobaa-operator-858b4df6b-2k78x                   2/2     Running   0          74s
+pod/ocs-metrics-exporter-76649d74ff-vhchw             1/1     Running   0          53s
+pod/ocs-operator-67c8cb844f-j8qjd                     1/1     Running   0          54s
+pod/odf-console-7b4698b9f8-8zkz7                      1/1     Running   0          82s
+pod/odf-operator-controller-manager-74d84f574-vk2xt   2/2     Running   0          82s
+pod/rook-ceph-operator-57688f7d57-8zzrf               1/1     Running   0          42s
+pod/ux-backend-server-6494646d87-9rb8t                2/2     Running   0          53s
+
+NAME                                                                                                           PACKAGE                   SOURCE             CHANNEL
+subscription.operators.coreos.com/mcg-operator-stable-4.14-redhat-operators-openshift-marketplace              mcg-operator              redhat-operators   stable-4.14
+subscription.operators.coreos.com/ocs-operator-stable-4.14-redhat-operators-openshift-marketplace              ocs-operator              redhat-operators   stable-4.14
+subscription.operators.coreos.com/odf-csi-addons-operator-stable-4.14-redhat-operators-openshift-marketplace   odf-csi-addons-operator   redhat-operators   stable-4.14
+subscription.operators.coreos.com/odf-operator                                                                 odf-operator              redhat-operators   stable-4.14
+```
 
