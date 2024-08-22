@@ -1,6 +1,10 @@
 # Deploying WatsonX on-perm
 
 
+## Environment Variables
+```
+
+```
 
 ## Configure OpenShift Cluster 
 
