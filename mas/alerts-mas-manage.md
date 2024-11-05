@@ -1,4 +1,5 @@
 # Top 10 alerts for Maximo Application Suite and Manage
+### Using Grafana Alerts
 
 
 Alert | Rule | Description
