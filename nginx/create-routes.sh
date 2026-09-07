@@ -1,15 +1,19 @@
 #!/bin/bash
 # Create Routes for Maximo core and manage
 
+export SOURCE_CLUSTER_DOMAIN=ibmsmoc.cp.fyre.ibm.com
+export SOURCE_MAXIMO_INSTANCE_WORKSPACE=dev
+
+
 MAXIMO_ROUTES={
-"admin.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"api.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"auth.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"home.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"maxinst.manage.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"testws-ui.manage.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"testws.home.mastest.apps.mas-ml.cp.fyre.ibm.com"
-"testws.manage.mastest.apps.mas-ml.cp.fyre.ibm.com"
+"admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"api.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"maxinst.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
+"${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
 }
 
 kind: Route
