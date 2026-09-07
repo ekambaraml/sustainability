@@ -15,10 +15,10 @@ MAXIMO_ROUTES={
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: admin.mastest.apps.mas-ml.cp.fyre.ibm.com
+  name: ${MAXIMO_ROUTES}
   namespace: a-http-server
 spec:
-  host: admin.mastest.apps.mas-ml.cp.fyre.ibm.com
+  host: ${MAXIMO_ROUTES}
   to:
     kind: Service
     name: nginx
