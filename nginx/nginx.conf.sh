@@ -1,3 +1,4 @@
+#!/bin/bash
 # Configuration parameters
 export SOURCE_CLUSTER_DOMAIN=ibmsmoc.cp.fyre.ibm.com
 export SOURCE_MAXIMO_INSTANCE_WORKSPACE=dev
