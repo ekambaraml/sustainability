@@ -1,5 +1,6 @@
-Using nginx as Reverse Proxy to Maximo
+# Using nginx as Reverse Proxy to Maximo
 
+## Setup
 
 
 ## References
