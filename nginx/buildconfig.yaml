@@ -1,0 +1,26 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+    name: nginx-maximo
+spec:
+  runPolicy: Serial
+  source:
+    dockerfile: |
+      FROM docker.io/rockylinux:8.9
+      RUN yum install -y epel-release && \
+          yum install -y nginx
+
+      COPY tls.crt /etc/ssl/certs/nginx-cert/tls.crt
+      COPY tls.key /etc/ssl/certs/nginx-cert/tls.key
+      COPY nginx.conf /etc/nginx/nginx.conf
+
+      CMD /usr/sbin/nginx -g 'daemon off;'
+
+  strategy:
+    type: Docker
+    dockerStrategy:
+      noCache: false
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "nginx-maximo:latest"
