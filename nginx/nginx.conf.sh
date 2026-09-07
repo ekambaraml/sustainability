@@ -1,9 +1,9 @@
 # Configuration parameters
-SOURCE_CLUSTER_DOMAIN
-SOURCE MAXIMO_INSTANCE_WORKSPACE
+export SOURCE_CLUSTER_DOMAIN=ibmsmoc.cp.fyre.ibm.com
+export SOURCE_MAXIMO_INSTANCE_WORKSPACE=dev
 
-SOURCE_CLUSTER_DOMAIN
-SOURCE MAXIMO_INSTANCE_WORKSPACE
+export TARGET_CLUSTER_DOMAIN=smoc.cp.fyre.ibm.com
+export TARGET_MAXIMO_INSTANCE_WORKSPACE=dev
 
 # Create nginx.conf
 
@@ -27,11 +27,11 @@ http {
 # the domain names used later one, thus making this config easier to re-use.
 
     map '' $mas_domain {
-                default  "test.apps.mas-ml.cp.fyre.ibm.com";
+                default  "${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}";
         }
    
     map '' $proxy_domain {
-                default    "mastest.apps.mas-ml.cp.fyre.ibm.com";
+                default    "${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"";
         }
 
 
@@ -85,21 +85,21 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
         
-        server_name admin.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
 
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://admin-dashboard.mas-test-core.svc.cluster.local/;
-            proxy_redirect https://admin.test.apps.mas-ml.cp.fyre.ibm.com https://admin.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://auth.test.apps.mas-ml.cp.fyre.ibm.com https://auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://home.test.apps.mas-ml.cp.fyre.ibm.com https://home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.home.test.apps.mas-ml.cp.fyre.ibm.com https://testws.home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_set_header Host admin.test.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_cookie_domain test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            proxy_pass  https://admin-dashboard.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-core.svc.cluster.local/;
+            proxy_redirect https://admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://admin.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://auth.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_set_header Host admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
+            proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
             
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com;object-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
         }
         error_page 404 /404.html;
             location = /40x.html {
@@ -116,21 +116,21 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
 
-        server_name home.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
 
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://homepage.mas-test-core.svc.cluster.local/;
-            proxy_redirect https://admin.test.apps.mas-ml.cp.fyre.ibm.com https://admin.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://auth.test.apps.mas-ml.cp.fyre.ibm.com https://auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://home.test.apps.mas-ml.cp.fyre.ibm.com https://home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.home.test.apps.mas-ml.cp.fyre.ibm.com https://testws.home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_set_header Host home.test.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_cookie_domain test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            proxy_pass  https://homepage.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-core.svc.cluster.local/;
+            proxy_redirect https://admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://admin.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://auth.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN}
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_set_header Host home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
             
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' localhost:* *.walkme.com;frame-ancestors *.test.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com;object-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.test.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
         }
 
         error_page 404 /404.html;
@@ -148,18 +148,18 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
         
-        server_name testws.home.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.mas-ml.cp.fyre.ibm.com;
         port_in_redirect off;
 
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://navigator.mas-test-core.svc.cluster.local/;
-            proxy_redirect https://admin.test.apps.mas-ml.cp.fyre.ibm.com https://admin.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://auth.test.apps.mas-ml.cp.fyre.ibm.com https://auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://home.test.apps.mas-ml.cp.fyre.ibm.com https://home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.home.test.apps.mas-ml.cp.fyre.ibm.com https://testws.home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_set_header Host testws.home.test.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_cookie_domain test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            proxy_pass  https://navigator.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-core.svc.cluster.local/;
+            proxy_redirect https://admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://admin.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://auth.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_set_header Host ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
             
             
             proxy_hide_header Content-Security-Policy;
@@ -185,12 +185,12 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
         
-        server_name api.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name api.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
 
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://coreapi.mas-test-core.svc.cluster.local/;
+            proxy_pass  https://coreapi.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-core.svc.cluster.local/;
             
             # Match anything not empty
             if ($http_origin ~ '.+') {
@@ -203,7 +203,7 @@ http {
              
             sub_filter_types application/json;
             sub_filter_once off;
-            sub_filter test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            sub_filter test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.${TARGET_CLUSTER_DOMAIN};
 
         }
         error_page 404 /404.html;
@@ -221,26 +221,26 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
         
-        server_name auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
    
         location /login {
             proxy_ssl_server_name on;
-            proxy_pass  https://coreidp-login.mas-test-core.svc.cluster.local;
+            proxy_pass  https://coreidp-login.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-core.svc.cluster.local;
             proxy_set_header Host $host;
         }
 
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://coreidp.mas-test-core.svc.cluster.local/;
+            proxy_pass  https://coreidp.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-core.svc.cluster.local/;
             proxy_set_header Host $host;
-            proxy_redirect https://admin.test.apps.mas-ml.cp.fyre.ibm.com https://admin.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://auth.test.apps.mas-ml.cp.fyre.ibm.com https://auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://home.test.apps.mas-ml.cp.fyre.ibm.com https://home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.home.test.apps.mas-ml.cp.fyre.ibm.com https://testws.home.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws-ui.manage.test.apps.mas-ml.cp.fyre.ibm.com https://testws-ui.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://maxinst.manage.test.apps.mas-ml.cp.fyre.ibm.com https://maxinst.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.manage.test.apps.mas-ml.cp.fyre.ibm.com https://testws.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
+            proxy_redirect https://admin.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://admin.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://auth.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.home.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN}m;
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://maxinst.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://maxinst.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
 }
 
         error_page 404 /404.html;
@@ -261,26 +261,26 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
 
-        server_name testws-ui.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
 
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://test-testws-ui.mas-test-manage.svc.cluster.local;
-            proxy_redirect https://auth.test.apps.mas-ml.cp.fyre.ibm.com https://auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws-ui.manage.test.apps.mas-ml.cp.fyre.ibm.com https://testws-ui.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://maxinst.manage.test.apps.mas-ml.cp.fyre.ibm.com https://maxinst.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.manage.test.apps.mas-ml.cp.fyre.ibm.com https://testws.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_set_header Host testws-ui.manage.test.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_cookie_domain test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            proxy_pass  https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-manage.svc.cluster.local;
+            proxy_redirect https://auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://auth.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://maxinst.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://maxinst.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_set_header Host ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
+            proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
 
             sub_filter_types application/json;
             sub_filter_once off;
-            sub_filter test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            sub_filter test.apps.mas-ml.cp.fyre.ibm.com ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
 
 
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com;object-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
         }
 
         error_page 404 /404.html;
@@ -297,19 +297,19 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
 
-        server_name maxinst.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name maxinst.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
 
 
         location /erd {
             proxy_ssl_server_name on;
-            proxy_pass  https://test-testws-maxinst.mas-test-manage.svc.cluster.local;
+            proxy_pass  https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-maxinst.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-manage.svc.cluster.local;
             proxy_set_header Host $host;
         }
 
         location /toolsapi {
             proxy_ssl_server_name on;
-            proxy_pass  https://test-testws-maxinst.mas-test-manage.svc.cluster.local;
+            proxy_pass  https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-maxinst.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-manage.svc.cluster.local;
             proxy_set_header Host $host;
         }
 
@@ -327,7 +327,7 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
 
-        server_name testws.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
+        server_name ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
         proxy_busy_buffers_size   512k;
         proxy_buffers   4 512k;
@@ -335,17 +335,17 @@ http {
         large_client_header_buffers 4 32k;
         location / {
             proxy_ssl_server_name on;
-            proxy_pass  https://test-testws-ui.mas-test-manage.svc.cluster.local;
-            proxy_redirect https://auth.test.apps.mas-ml.cp.fyre.ibm.com https://auth.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws-ui.manage.test.apps.mas-ml.cp.fyre.ibm.com https://testws-ui.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://maxinst.manage.test.apps.mas-ml.cp.fyre.ibm.com https://maxinst.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_redirect https://testws.manage.test.apps.mas-ml.cp.fyre.ibm.com https://testws.manage.mastest.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_set_header Host testws.manage.test.apps.mas-ml.cp.fyre.ibm.com;
-            proxy_cookie_domain test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            proxy_pass  https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.mas-${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-manage.svc.cluster.local;
+            proxy_redirect https://auth.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://auth.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}-ui.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://maxinst.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://maxinst.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_redirect https://${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} https://${TARGET_MAXIMO_INSTANCE_WORKSPACE}.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_set_header Host ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.manage.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
             sub_filter_types application/json text/html text/xml;
             sub_filter_once off;
             proxy_set_header Accept-Encoding "";
-            sub_filter test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.mas-ml.cp.fyre.ibm.com;
+            sub_filter ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
 
         
 }
