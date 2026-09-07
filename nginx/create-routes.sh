@@ -18,7 +18,7 @@ MAXIMO_ROUTES={
 
 for i in ${MAXIMO_ROUTES};
 do
-cat > $i.yaml << EOF
+cat > "$i".yaml << EOF
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
