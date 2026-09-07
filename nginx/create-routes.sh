@@ -16,6 +16,9 @@ MAXIMO_ROUTES={
 "${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.manage.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN}"
 }
 
+for i in ${MAXIMO_ROUTES};
+do
+cat > $i.yaml << EOF
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
@@ -32,4 +35,6 @@ spec:
   tls:
     termination: passthrough
   wildcardPolicy: None
-  
+
+EOF
+done
