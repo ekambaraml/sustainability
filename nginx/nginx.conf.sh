@@ -99,7 +99,7 @@ http {
             proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
             
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
         }
         error_page 404 /404.html;
             location = /40x.html {
@@ -130,7 +130,7 @@ http {
             proxy_cookie_domain ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
             
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.test.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
         }
 
         error_page 404 /404.html;
@@ -148,7 +148,7 @@ http {
         ssl_certificate /etc/ssl/certs/nginx-cert/tls.crt;
         ssl_certificate_key /etc/ssl/certs/nginx-cert/tls.key;
         
-        server_name ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.mas-ml.cp.fyre.ibm.com;
+        server_name ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.home.${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN};
         port_in_redirect off;
 
         location / {
@@ -163,7 +163,7 @@ http {
             
             
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com;object-src *.mastest.apps.mas-ml.cp.fyre.ibm.com 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
 
         }
         error_page 404 /404.html;
@@ -203,7 +203,7 @@ http {
              
             sub_filter_types application/json;
             sub_filter_once off;
-            sub_filter test.apps.mas-ml.cp.fyre.ibm.com mastest.apps.${TARGET_CLUSTER_DOMAIN};
+            sub_filter ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
 
         }
         error_page 404 /404.html;
@@ -276,11 +276,11 @@ http {
 
             sub_filter_types application/json;
             sub_filter_once off;
-            sub_filter test.apps.mas-ml.cp.fyre.ibm.com ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
+            sub_filter ${SOURCE_MAXIMO_INSTANCE_WORKSPACE}.apps.${SOURCE_CLUSTER_DOMAIN} ${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN};
 
 
             proxy_hide_header Content-Security-Policy;
-            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.mastest.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
+            add_header Content-Security-Policy "default-src https://* 'self';font-src 'self' data: https://1.www.s81c.com *.walkme.com;img-src 'self' data: *.walkme.com s3.walkmeusercontent.com *.cloudfront.net/customers/IBM/ mp.s81c.com s3.us.cloud-object-storage.appdomain.cloud;style-src 'self' 'unsafe-inline' *.walkme.com;script-src 'self' 'unsafe-eval' 'sha256-G0d/YkJrr6akA75BrKl0r6pAC+2f5xjHTlC11qYbxkw=' 'sha256-Phm/goMXGJ3h9oEFMmEq0xPHqWcrZLj0l6m31gpK5B8=' 'sha256-nKfYhKkHDc3OG7ErvOaNtPs/GDxVHz2aOxbm082UAfg=' *.walkme.com;frame-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' localhost:* *.walkme.com;frame-ancestors *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com;object-src *.${TARGET_MAXIMO_INSTANCE_WORKSPACE}.apps.${TARGET_CLUSTER_DOMAIN} 'self' *.walkme.com" always;
         }
 
         error_page 404 /404.html;
