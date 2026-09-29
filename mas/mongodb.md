@@ -49,3 +49,6 @@ mongosh "mongodb://localhost:27017" --username admin --password ${PASSWORD} --au
 
 
 <img width="463" height="188" alt="image" src="https://github.com/user-attachments/assets/242c5e08-c9ed-4df7-a32c-dc288ae1a70e" />
+
+* $ db.OauthClient.find()
+* 
