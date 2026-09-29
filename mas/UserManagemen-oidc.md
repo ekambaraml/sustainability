@@ -6,3 +6,4 @@ References:
 * https://www.ibm.com/docs/en/masv-and-l/cd?topic=methods-configuring-oidc-authentication
 * MAS Domain Change https://www.ibm.com/support/pages/change-maximo-application-suite-domain-name-updating-specdomain-mas-suite-and-coreidp-custom-resources
 * MAS Must Gather https://www.ibm.com/support/pages/node/6998647
+* MAS Reverse Proxy Setup https://www.ibm.com/support/pages/configure-nginx-reverse-proxy-access-ibm-maximo-application-suite-mas-alternate-domain-openshift
