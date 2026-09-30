@@ -21,3 +21,8 @@ $ openssl x509 -in tls.crt -text -noout | grep -A 2 "Validity"
             Not After : Dec  7 18:48:24 2026 GMT
 
 ```
+
+## Display certificate in text format
+```
+ openssl x509 -in tls.crt  -text -noout
+ ```
